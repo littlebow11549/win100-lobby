@@ -114,6 +114,22 @@
       />
     </template>
   </AppLayout>
+
+  <!-- Modals -->
+  <GameModal
+    v-if="openGame"
+    :game="openGame"
+    @close="openGame = null"
+  />
+  <SignInModal
+    v-if="showSignIn"
+    @close="showSignIn = false"
+    @login="user = $event"
+  />
+  <CustomerServiceModal
+    v-if="showSupport"
+    @close="showSupport = false"
+  />
 </template>
 
 <script setup>
@@ -130,11 +146,14 @@ import Promos         from '@/components/home/Promos.vue';
 import Rail           from '@/components/game/Rail.vue';
 import FilteredGrid   from '@/components/game/FilteredGrid.vue';
 import CategoryView   from '@/components/game/CategoryView.vue';
-import Leaderboard    from '@/components/lobby/Leaderboard.vue';
-import Tournaments    from '@/components/lobby/Tournaments.vue';
-import Sports         from '@/components/lobby/Sports.vue';
-import Promotion      from '@/components/lobby/Promotion.vue';
-import Providers      from '@/components/lobby/Providers.vue';
+import Leaderboard            from '@/components/lobby/Leaderboard.vue';
+import Tournaments            from '@/components/lobby/Tournaments.vue';
+import Sports                 from '@/components/lobby/Sports.vue';
+import Promotion              from '@/components/lobby/Promotion.vue';
+import Providers              from '@/components/lobby/Providers.vue';
+import GameModal              from '@/components/modal/GameModal.vue';
+import SignInModal            from '@/components/modal/SignInModal.vue';
+import CustomerServiceModal   from '@/components/modal/CustomerServiceModal.vue';
 import { GAMES, RECENTLY_PLAYED } from '@/data/index.js';
 
 const openGame          = ref(null);
