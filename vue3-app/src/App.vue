@@ -39,6 +39,24 @@
       :user="user"
       @navigate="activeCat = $event"
     />
+    <PersonalInfo v-else-if="activeCat === 'Personal Info'"
+      :user="user"
+      @navigate="activeCat = $event"
+    />
+    <SecurityCenter v-else-if="activeCat === 'Security Center'"
+      @navigate="activeCat = $event"
+      @logout="user = null; activeCat = 'Lobby'"
+    />
+    <CustomerServicePage v-else-if="activeCat === 'Customer Service'"
+      @navigate="activeCat = $event"
+    />
+    <RecordTable v-else-if="['Betting Record','Deposit Record','Withdrawal Record','Profit And Loss','Account Record'].includes(activeCat)"
+      :title="activeCat"
+      @navigate="activeCat = $event"
+    />
+    <SupportPage v-else-if="activeCat === 'Support'"
+      @navigate="activeCat = $event"
+    />
 
     <!-- 首頁區塊 -->
     <template v-else-if="activeCat === 'Lobby'">
@@ -170,6 +188,11 @@ import CustomerServiceModal   from '@/components/modal/CustomerServiceModal.vue'
 import AccountOverview        from '@/components/account/AccountOverview.vue';
 import DepositPage            from '@/components/account/DepositPage.vue';
 import WithdrawalPage         from '@/components/account/WithdrawalPage.vue';
+import PersonalInfo           from '@/components/account/PersonalInfo.vue';
+import SecurityCenter         from '@/components/account/SecurityCenter.vue';
+import CustomerServicePage    from '@/components/account/CustomerServicePage.vue';
+import RecordTable            from '@/components/account/RecordTable.vue';
+import SupportPage            from '@/components/account/SupportPage.vue';
 import { GAMES, RECENTLY_PLAYED } from '@/data/index.js';
 
 const openGame          = ref(null);
